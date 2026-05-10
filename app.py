@@ -240,8 +240,8 @@ class YouTubeProcessor:
 # --- NEW STREAMLIT APP CODE ---
 
 # Set the page title and layout
-st.set_page_config(page_title="YouTube Video Note & Flashcard Generator", layout="wide")
-st.title("YouTube Video Note & Flashcard Generator")
+st.set_page_config(page_title="FastFlicker - YouTube Video Note & Flashcard Generator 📼🧠", layout="wide")
+st.title("FastFlicker - YouTube Video Note & Flashcard Generator 📼🧠")
 
 # Check if the API key is available
 if not GROQ_API_KEY:
