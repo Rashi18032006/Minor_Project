@@ -1,6 +1,6 @@
-# YouTube Video Note & Flashcard Generator
+# FastFlicker - YouTube Video Note & Flashcard Generator 📼🧠
 
-Streamlit app that takes a YouTube URL, checks whether the video appears educational, and generates study notes and flashcards using the Groq API.
+Streamlit app that takes a YouTube URL, checks whether the video appears educational, and generates study notes and flashcards using the Groq API (LLaMA 3.1 model).
 
 ## Features
 
@@ -16,12 +16,16 @@ Streamlit app that takes a YouTube URL, checks whether the video appears educati
 - `pip` installed
 - A valid `GROQ_API_KEY`
 
-## Setup
+## Live Demo
 
-Open a terminal in the `FastFlicker` project folder:
+🚀 **Try the app online:** [FastFlicker on Streamlit Cloud](https://share.streamlit.io/Rashi18032006/Minor_Project/main/app.py)
+
+## Setup (Local Development)
+
+Open a terminal in the `Minor_Project` folder:
 
 ```powershell
-cd "c:\Users\lenovo\OneDrive\Desktop\minor project\FastFlicker"
+cd "c:\Users\lenovo\Minor_Project"
 ```
 
 Create and activate the virtual environment:
@@ -80,6 +84,22 @@ http://localhost:8501
 - Non-educational videos are blocked to prevent unwanted content generation.
 - If you encounter API failures, verify your `GROQ_API_KEY` and `GROQ_API_URL` settings.
 
+## Deployment
+
+### Deploy to Streamlit Cloud
+
+1. Push your code to GitHub
+2. Go to [share.streamlit.io](https://share.streamlit.io)
+3. Click "New app" and select:
+   - Repository: `Rashi18032006/Minor_Project`
+   - Branch: `main`
+   - Main file: `app.py`
+4. Add your secrets in the app settings:
+   - `GROQ_API_KEY`: Your Groq API key
+   - `GROQ_API_URL`: `https://api.groq.com/openai/v1`
+   - `GROQ_MODEL`: `llama-3.1-8b-instant`
+5. Click Deploy!
+
 ## Troubleshooting
 
 If the virtual environment fails to activate in PowerShell, run:
@@ -89,3 +109,9 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned
 ```
 
 If dependencies are missing, ensure the virtual environment is active before running `streamlit run app.py`.
+
+### App Not Showing Latest Changes?
+
+- Hard refresh your browser: `Ctrl+Shift+R` (Windows) or `Cmd+Shift+R` (Mac)
+- Check Streamlit Cloud deployment logs for errors
+- Ensure your code is pushed to the main branch
