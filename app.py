@@ -10,7 +10,20 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 
-GROQ_API_KEY = os.getenv('GROQ_API_KEY') or os.getenv('API_KEY')
+# First check st.secrets (for Streamlit Cloud deployment)
+try:
+    GROQ_API_KEY = st.secrets.get("GROQ_API_KEY") or st.secrets.get("API_KEY")
+except Exception:
+    GROQ_API_KEY = None
+
+# Fallback to environment variables (for local deployment with .env)
+if not GROQ_API_KEY:
+    GROQ_API_KEY = os.getenv('GROQ_API_KEY') or os.getenv('API_KEY')
+
+# Clean the API key to prevent whitespace/quote issues leading to 401 errors
+if GROQ_API_KEY:
+    GROQ_API_KEY = GROQ_API_KEY.strip().strip("'\"")
+
 GROQ_MODEL = os.getenv('GROQ_MODEL', 'llama-3.1-8b-instant')
 GROQ_API_URL = os.getenv('GROQ_API_URL', 'https://api.groq.com/openai/v1')
 
@@ -245,7 +258,7 @@ st.title("FastFlicker - YouTube Video Note & Flashcard Generator 📼🧠")
 
 # Check if the API key is available
 if not GROQ_API_KEY:
-    st.error("GROQ_API_KEY not found! Please add it to your .env file.")
+    st.error("GROQ_API_KEY not found! If running locally, add it to your `.env` file. If deployed on Streamlit Cloud, add it to the **App Secrets** in the Streamlit Cloud dashboard.")
 else:
     available_models = [
         'llama-3.1-8b-instant',              # ✅ Fast, 14,400 req/day free
